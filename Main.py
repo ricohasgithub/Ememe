@@ -2,8 +2,6 @@
 import smtplib
 import time
 
-from array import *
-
 # Read sender email info
 file_reader = open("sender.txt", "r")
 me_email = file_reader.read()
