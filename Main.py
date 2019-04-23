@@ -2,14 +2,24 @@
 import smtplib
 import time
 
-me_email = "1ZHURIC2@hdsb.ca"
-send_email = "1YAOETH2@hdsb.ca"
+from array import *
 
+# Read sender email info
+file_reader = open("sender.txt", "r")
+me_email = file_reader.read()
+
+# Read sender password
 file_reader = open("password.txt", "r")
-
 me_password = file_reader.read()
 
-print(me_password)
+# Read email recipients as array
+file_reader = open("recipients.txt", "r")
+file_length = file_reader.readlines()
+
+rec_emails = []
+
+for i in file_length:
+    rec_emails.append(i)
 
 message = "zimbabwe"
 
@@ -17,17 +27,22 @@ email_count = 0
 
 while (True):
     
-    print("Iterating...")
-    smtpObj = smtplib.SMTP("smtp.gmail.com", 587)
-    smtpObj.starttls()
+    # Iterate through recipient list and send an email to each address
+    for k in range(0, len(rec_emails)):
 
-    smtpObj.login(me_email,me_password)
-    smtpObj.sendmail(me_email,send_email,message)
-    smtpObj.quit()   
+        print("Iterating...")        
+        send_email = rec_emails[k]
+        
+        smtpObj = smtplib.SMTP("smtp.gmail.com", 587)
+        smtpObj.starttls()
+
+        smtpObj.login(me_email,me_password)
+        smtpObj.sendmail(me_email,send_email,message)
+        smtpObj.quit()   
     
-    email_count += 1
+        email_count += 1
     
-    print(email_count)
-    print("Message sent!")
+        print(email_count)
+        print("Message sent!")
     
-    time.sleep(3) # change rate of fire here
+        time.sleep(3) # change rate of fire here
