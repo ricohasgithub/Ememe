@@ -1,15 +1,33 @@
+
 import smtplib
+import time
 
-me_email = ""
-send_email = ""
+me_email = "1ZHURIC2@hdsb.ca"
+send_email = "1YAOETH2@hdsb.ca"
 
-me_password = ""
+file_reader = open("password.txt", "r")
 
-message = ""
+me_password = file_reader.read()
 
-smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
-smtpObj.starttls()
+print(me_password)
 
-smtpObj.login(me_email,me_password)
-smtpObj.sendmail(me_email,send_email,message)
-smtpObj.quit()
+message = "zimbabwe"
+
+email_count = 0
+
+while (True):
+    
+    print("Iterating...")
+    smtpObj = smtplib.SMTP("smtp.gmail.com", 587)
+    smtpObj.starttls()
+
+    smtpObj.login(me_email,me_password)
+    smtpObj.sendmail(me_email,send_email,message)
+    smtpObj.quit()   
+    
+    email_count += 1
+    
+    print(email_count)
+    print("Message sent!")
+    
+    time.sleep(3) # change rate of fire here
