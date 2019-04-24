@@ -18,8 +18,11 @@ rec_emails = []
 
 for i in file_length:
     rec_emails.append(i)
-
-message = "zimbabwe"
+    
+text_subject = "Cuts hurt kids"
+text_message = "Please do not cut teachers and education for Ontario. We as students are fighting for the employment and rights of our teachers. Cuts hurt kids."
+    
+message = 'Subject: {}\n\n{}'.format(text_subject, text_message)
 
 email_count = 0
 
@@ -43,4 +46,4 @@ while (True):
         print(email_count)
         print("Message sent!")
     
-        time.sleep(3) # change rate of fire here
+        #time.sleep() # change rate of fire here
